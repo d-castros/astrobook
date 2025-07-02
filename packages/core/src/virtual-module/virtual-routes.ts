@@ -76,12 +76,14 @@ export async function getVirtualRoutes(
   return new Map(routes.map((route) => [route.pattern, route]))
 }
 
-export function createVirtualRouteComponent(route: VirtualRoute): string {
+export function createVirtualRouteComponent(route: VirtualRoute, body:any): string {
   return `
 ---
 import StoryPage from 'astrobook/pages/story.astro'
 import { isAstroStory } from 'astrobook/client'
 import * as m from '${route.storyModule.importPath}'
+
+${body ? `import ExtraComp from '${body}'` : ''}
 
 const isAstro = isAstroStory(m)
 ---
@@ -92,6 +94,10 @@ const isAstro = isAstroStory(m)
       ? (<m.default.component { ...m['${route.story.name}']?.args } />)
       : (<m.default.component { ...m['${route.story.name}']?.args } client:load />)
   }
+
+
+  ${body ? `<ExtraComp storyName={'${route.story.name}'} module={'${route.storyModule.name}'} modulePath={'${route.storyModule.directory}'} extraHtml={m['${route.story.name}']?.args?.extraHtml} />` : ''}
+
 </StoryPage>
 `.trim()
 }
