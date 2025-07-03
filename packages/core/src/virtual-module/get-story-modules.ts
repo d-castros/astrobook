@@ -56,10 +56,10 @@ async function parseStoryFiles(filePath: string): Promise<ParsedStoryFile> {
   return { filePath, defaultExport, namedExports }
 }
 
-export async function convertStoryFileToModule(
+export function convertStoryFileToModule(
   rootDir: string,
   file: ParsedStoryFile,
-): Promise<StoryModule | undefined> {
+): StoryModule | undefined {
   if (file.namedExports.length === 0) {
     console.warn(`[astrobook] File ${file.filePath} has no named exports`)
     return
@@ -90,22 +90,20 @@ export async function convertStoryFileToModule(
     name,
     directory,
     importPath: slash(file.filePath),
-    stories: await Promise.all(
-      file.namedExports.map(async (name) => {
-        // Try to extract extraHtml from the story export
-        let extraHtml = undefined;
-        try {
-          // Dynamically import the story file and get the extraHtml field if present
-          const storyModule = await import(file.filePath);
-          if (storyModule[name]?.args?.extraHtml) {
-            extraHtml = storyModule[name].args.extraHtml;
-          }
-        } catch (e) {
-          // ignore errors, extraHtml will be undefined
-        }
-        return { id: `${moduleId}/${kebabCase(name)}`, name, extraHtml }
-      })
-    ),
+    stories: file.namedExports.map((name) => {
+      // Try to extract extraHtml from the story export
+			let extraHtml = undefined;
+      try {
+				// Dynamically require the story file and get the extraHtml field if present
+				const storyModule = require(file.filePath);
+				if (storyModule[name]?.args?.extraHtml) {
+					extraHtml = storyModule[name].args.extraHtml;
+				}
+			} catch (e) {
+				// ignore errors, extraHtml will be undefined
+			}
+      return { id: `${moduleId}/${kebabCase(name)}`, name, extraHtml }
+    }),
   }
 }
 
@@ -113,8 +111,7 @@ export async function getStoryModules(rootDir: string): Promise<StoryModule[]> {
   const storyFilePaths = await listStoryFiles(rootDir)
   const storyFiles = await Promise.all(storyFilePaths.map(parseStoryFiles))
 
-  const modules = await Promise.all(
-    storyFiles.map((storyFile) => convertStoryFileToModule(rootDir, storyFile))
-  )
-  return modules.filter((module) => !!module) as StoryModule[]
+  return storyFiles
+    .map((storyFile) => convertStoryFileToModule(rootDir, storyFile))
+    .filter((module) => !!module)
 }
