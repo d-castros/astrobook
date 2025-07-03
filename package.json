@@ -1,10 +1,10 @@
 {
-  "name": "astrobook-bhe",
+  "name": "astrobook-monorepo",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "private": true,
   "packageManager": "pnpm@10.12.4",
-  "description": "Astrobook BHE",
+  "description": "Astrobook monorepo",
   "license": "MIT",
   "scripts": {
     "dev": "turbo --filter example-playground dev",

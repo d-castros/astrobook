@@ -80,6 +80,25 @@ export interface IntegrationOptions {
    * ```
    */
   head?: string
+
+    /**
+   * The path to an Astro component to provide custom tags in the `<body>`.
+   *
+   * @example
+   *
+   * ```js
+   * astrobook({
+   *  body: './src/components/body.astro',
+   * })
+   * ```
+   *
+   * ```astro
+   * astrobook({
+   *  body: './src/components/body.html',
+   * })
+   * ```
+   */
+  body?: string
 }
 
 export interface StoryModule {
@@ -139,6 +158,7 @@ export interface GlobalConfig {
   head: string
   css: string[]
   title: string
+  body: string
 }
 
 declare global {
