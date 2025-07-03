@@ -76,14 +76,29 @@ export async function getVirtualRoutes(
   return new Map(routes.map((route) => [route.pattern, route]))
 }
 
-export function createVirtualRouteComponent(route: VirtualRoute, body:any): string {
+export function createVirtualRouteComponent(route: VirtualRoute, body: any, rootDir?: string): string {
+  // Resolve the body path consistently for both dev and build
+  let resolvedBody = null
+  if (body) {
+    if (path.isAbsolute(body)) {
+      resolvedBody = body
+    } else if (rootDir) {
+      // Resolve relative to the root directory
+      resolvedBody = path.resolve(rootDir, body)
+    } else {
+      resolvedBody = path.resolve(body)
+    }
+    // Ensure we use forward slashes for consistency
+    resolvedBody = slash(resolvedBody)
+  }
+  
   return `
 ---
 import StoryPage from 'astrobook/pages/story.astro'
 import { isAstroStory } from 'astrobook/client'
 import * as m from '${route.storyModule.importPath}'
 
-${body ? `import ExtraComp from '${body}'` : ''}
+${resolvedBody ? `import ExtraComp from '${resolvedBody}'` : ''}
 
 const isAstro = isAstroStory(m)
 ---
@@ -96,7 +111,7 @@ const isAstro = isAstroStory(m)
   }
 
 
-  ${body ? `<ExtraComp storyName={'${route.story.name}'} module={'${route.storyModule.name}'} modulePath={'${route.storyModule.directory}'} extraHtml={m['${route.story.name}']?.args?.extraHtml} />` : ''}
+  ${resolvedBody ? `<ExtraComp storyName={'${route.story.name}'} module={'${route.storyModule.name}'} modulePath={'${route.storyModule.directory}'} extraHtml={m['${route.story.name}']?.args?.extraHtml} />` : ''}
 
 </StoryPage>
 `.trim()

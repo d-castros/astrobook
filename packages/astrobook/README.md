@@ -1,11 +1,28 @@
 <div align="center">
-<h1>Astrobook</h1>
+<h1>Astrobook BHE</h1>
 <p><strong>The minimal UI component playground</strong></p>
 </div>
 
 ![astrobook](https://github.com/user-attachments/assets/02289aa9-df34-48f8-8aa5-42015c172443)
 
 Astrobook is a UI component playground that supports multiple frameworks including **React**, **Vue**, **Preact**, **Svelte**, **Solid**, **Lit**, and **Astro**. It offers a unified environment to develop, test, and showcase components.
+
+## Make updates
+Steps:
+```
+// Do updates, usually is in core
+pnpm build   
+pnpm build:package
+cd packages/core 
+npm pack
+upload just astrobook-core-0.0.3.tgz
+
+Go to project frontend and 
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install 
+```
+
 
 ## Try it Online
 
