@@ -72,9 +72,9 @@
     "build": "tsc --build tsconfig.build.json"
   },
   "dependencies": {
-    "@astrobook/core": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-core-0.0.3.tgz",
-    "@astrobook/types": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-types-0.0.3.tgz",
-    "@astrobook/ui": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-ui-0.0.3.tgz"
+    "@astrobook/core": "https://www.stoltz.co/astrobook/astrobook-core-0.0.3.tgz",
+    "@astrobook/types": "https://www.stoltz.co/astrobook/astrobook-types-0.0.3.tgz",
+    "@astrobook/ui": "https://www.stoltz.co/astrobook/astrobook-ui-0.0.3.tgz"
   },
   "peerDependencies": {
     "astro": ">=4.0.0"

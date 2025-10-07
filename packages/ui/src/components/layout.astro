@@ -2,7 +2,6 @@
 import '../style.css'
 import './layout.css'
 import Sidebar from './sidebar.astro'
-import { ThemeScript } from 'astro-theme-toggle'
 import CustomHead from 'virtual:astrobook/components/head.mjs'
 import config from 'virtual:astrobook/global-config.mjs'
 
@@ -17,13 +16,12 @@ interface Props {
 const hasSidebar = Astro.props.hasSidebar ?? true
 ---
 
-<html lang="en" class=":uno: box-border h-full max-h-screen overflow-hidden">
+<html lang="en" class=":uno: box-border h-full max-h-screen overflow-hidden dark" data-theme="dark" style="color-scheme: dark;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{config.title}</title>
-    <ThemeScript />
     <script src="./theme-message.ts"></script>
     <CustomHead />
   </head>

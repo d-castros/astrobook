@@ -36,7 +36,7 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@astrobook/types": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-types-0.0.3.tgz",
+    "@astrobook/types": "https://www.stoltz.co/astrobook/astrobook-types-0.0.3.tgz",
     "@sveltejs/acorn-typescript": "^1.0.5",
     "acorn": "^8.15.0",
     "fdir": "^6.4.6",

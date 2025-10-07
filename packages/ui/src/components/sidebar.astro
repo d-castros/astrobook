@@ -1,6 +1,6 @@
 ---
+import SidebarButtonHome from './sidebar-button-home.astro'
 import SidebarButtonFullscreen from './sidebar-button-fullscreen.astro'
-import SidebarButtonTheme from './sidebar-button-theme.astro'
 import SidebarComponentList from './sidebar-component-list.astro'
 import SidebarTitle from './sidebar-title.astro'
 
@@ -16,7 +16,7 @@ interface Props {
     <SidebarTitle />
     <span class=":uno: flex-1"></span>
     <SidebarButtonFullscreen story={Astro.props.story} />
-    <SidebarButtonTheme />
+    <SidebarButtonHome />
   </div>
   <SidebarComponentList story={Astro.props.story} />
 </nav>

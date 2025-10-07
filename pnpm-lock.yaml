@@ -154,9 +154,6 @@ importers:
       '@astrobook/types':
         specifier: https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-types-0.0.3.tgz
         version: https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-types-0.0.3.tgz
-      astro-theme-toggle:
-        specifier: ^0.6.1
-        version: 0.6.1
       just-group-by:
         specifier: ^2.2.0
         version: 2.2.0
