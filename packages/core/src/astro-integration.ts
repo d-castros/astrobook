@@ -48,7 +48,7 @@ export function createAstrobookIntegration(
         await Promise.all(
           Array.from(routes.values()).map(async (route) => {
             const filePath = route.entrypoint
-            const fileContent = createVirtualRouteComponent(route, options?.body)
+            const fileContent = createVirtualRouteComponent(route, options?.body, rootDir)
             await fs.mkdir(path.dirname(filePath), { recursive: true })
             await fs.writeFile(filePath, fileContent, { encoding: 'utf-8' })
           }),

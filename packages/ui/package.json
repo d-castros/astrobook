@@ -1,7 +1,7 @@
 {
   "name": "@astrobook/ui",
   "type": "module",
-  "version": "0.8.3",
+  "version": "0.0.3",
   "description": "",
   "author": "ocavue <ocavue@gmail.com>",
   "license": "MIT",
@@ -42,8 +42,8 @@
     "build": "tsx copy.ts src temp && unocss --write-transformed && prettier -w temp/style.css && tsx copy.ts temp dist"
   },
   "dependencies": {
-    "@astrobook/core": "workspace:*",
-    "@astrobook/types": "workspace:*",
+    "@astrobook/core": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-core-0.0.3.tgz",
+    "@astrobook/types": "https://feature-app-inner-diego.s3.us-east-1.amazonaws.com/astrobookbhe/astrobook-types-0.0.3.tgz",
     "astro-theme-toggle": "^0.6.1",
     "just-group-by": "^2.2.0"
   },
