@@ -104,12 +104,13 @@ const isAstro = isAstroStory(m)
 ---
 
 <StoryPage story={'${route.props.story}'} hasSidebar={${route.props.hasSidebar}}>
+  <div class="component">
   {
     isAstro
       ? (<m.default.component { ...m['${route.story.name}']?.args } />)
       : (<m.default.component { ...m['${route.story.name}']?.args } client:load />)
   }
-
+  </div>
 
   ${resolvedBody ? `<ExtraComp storyName={'${route.story.name}'} module={'${route.storyModule.name}'} modulePath={'${route.storyModule.directory}'} extraHtml={m['${route.story.name}']?.args?.extraHtml} />` : ''}
 
